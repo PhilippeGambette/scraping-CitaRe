@@ -158,9 +158,6 @@ allPublications = [
 
 
 
-
-
-
 print("Building publication blocks of 20 publications...")
 
 # Create a list, publicationBlocks, of lists of 20 DOIs
