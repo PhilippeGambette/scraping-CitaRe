@@ -132,3 +132,4 @@ dmypy.json
 scripts/01-getDimensionsIds-secret.py
 scripts/02-getCitingPapers-secret.py
 scripts/03-getIstexIds-secret.py
+scripts/PubMed/pubmedCorpus
