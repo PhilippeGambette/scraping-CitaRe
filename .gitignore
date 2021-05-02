@@ -133,3 +133,7 @@ scripts/01-getDimensionsIds-secret.py
 scripts/02-getCitingPapers-secret.py
 scripts/03-getIstexIds-secret.py
 scripts/PubMed/pubmedCorpus
+scripts/PubMed/corpus
+scripts/PubMed/PubMed_retracted_publication_CitCntxt_withYR.tsv
+scripts/PubMed/PubMed_retracted_publication_CitingPapers_citedPapers.txt
+scripts/PubMed/PubMed_retracted_publication_CitingPapers_citedPapers_RetractedOrNot.tsv
