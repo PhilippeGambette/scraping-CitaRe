@@ -43,6 +43,7 @@ allPublications = [
 
 folder = os.path.abspath(os.path.dirname(sys.argv[0]))
 
+# Create output file
 allCitingPapersNoDuplicate = open(os.path.join(folder,"allCitingPapersNoDuplicates.txt"),"w",encoding="utf-8")
 
 allCitingPapers = open(os.path.join(folder,"citingPapers.tsv"),"r",encoding="utf-8")
@@ -105,5 +106,6 @@ for publicationBlock in publicationBlocks:
          if url["extension"]=="tei":
             # Save the URL found in ISTEX
             outputFile.writelines(publication["doi"][0]+"\t"+url["uri"]+"\n")
+            print(publication["doi"][0]+"\t"+url["uri"]+"\n")
    time.sleep(2)
 outputFile.close()
