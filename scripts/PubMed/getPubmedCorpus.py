@@ -176,9 +176,8 @@ def getContexts(node):
    return contexts
 
 
-# For each citation of a retracted article, 
-# get the PMID of the next article in the list
-# which is not already known as retracted
+# get contexts for citations of papers with PubMed 
+# which are not already known as retracted
 id = 0
 allCitedPapersFileName = "PubMed_retracted_publication_CitingPapers_citedPapersHopefullyNotRetracted.txt"
 hopefullyNotRetractedReferences = {}
@@ -268,6 +267,7 @@ if saveCitedArticlesHopefullyNotRetracted == True:
                 tag = res.group(3)
                 res = re.search(regex, tag)
             for sentence in sentences:
+                # Reformat citations in a simpler way (id put between pipes instead of cite tag)
                 res = re.search('<cite id=.([^"]+)["]', sentence)
                 if res:
                    #print(sentence)
@@ -282,6 +282,9 @@ if saveCitedArticlesHopefullyNotRetracted == True:
                    #print(citedInSentence)
                    #print("Cleaned sentence: " + cleanedSentence)
                    
+                   # keep the context if it contains more than 50 characters
+                   # if it does not cite a retracted article
+                   # and if it cites at least one article not known to be retracted and appearing in the list of references in the end of the article
                    if len(cleanedSentence) > 50:
                       retracted = 0
                       notRetracted = 0
