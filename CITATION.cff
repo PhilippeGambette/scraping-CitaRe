@@ -6,6 +6,6 @@ authors:
   orcid: "https://orcid.org/0000-0001-7062-0262"
 title: "Scraping-CitaRe"
 version: 1.0.0
-doi: 
+doi: 10.5281/zenodo.10925160
 date-released: 2024-04-04
 url: "https://github.com/PhilippeGambette/scraping-CitaRe"
