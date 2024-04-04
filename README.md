@@ -40,9 +40,20 @@ A few variables are used to activate some functionalities, around line 20 of the
 
 Part of the dataset available at https://zenodo.org/records/10694465  was obtained from the script PubMed/getPubmedCorpus.py using the process described below:
 
-## Process to retrieve contexts of citations of retracted articles
+## Process to retrieve contexts of citations of retracted and non-retracted articles
+
+### Process to retrieve contexts of citations of retracted articles
 * download the file `PubMed_retracted_publication_CitCntxt_withYR_v3.tsv` from https://databank.illinois.edu/datafiles/kacny/download (see Hsiao, Tzu-Kun; Schneider, Jodi (2021): Dataset for "Continued use of retracted papers: Temporal trends in citations and (lack of) awareness of retractions shown in citation contexts in biomedicine". University of Illinois at Urbana-Champaign. https://doi.org/10.13012/B2IDB-8255619_V1) or let the script `getPubmedCorpus.py` automatically download it with option `downloadFile` set to true
 * 28057 XML files of articles citing retracted articles, according to the file above, are downloaded from PubMedCentral (using the script `getPubmedCorpus.py` with option `downloadPubmedFiles` set to true)
   * for all these 28057 articles, [this spreadsheet file](https://docs.google.com/spreadsheets/d/1urEq8TDnvO9jmbzGvnsKI12z7N7y7sm4MmUiNa_gxEw/edit?usp=sharing) shows how many retracted articles (column B) and how many articles with PumMed ID, which are not known to be retracted (column C) they cite: 1 733 747 in total
-  * in these 28057 articles, we list all contexts of citations containing at least 50 characters, citing no article known to be retracted, citing at least one article with a PubMed Id, not known to be retracted and found in the reference list: 1 278 602 contexts are listed: the CSV file contained in the file `PubMed_retracted_publication_CitingPapers_citedPapersHopefullyNotRetracted.txt.contexts.zip`
+  * in these 28057 articles, we list all contexts of citations containing at least 50 characters, citing no article known to be retracted, citing at least one article with a PubMed Id, not known to be retracted and found in the reference list: 1 278 602 contexts are listed: the CSV file contained in the file [https://github.com/PhilippeGambette/scraping-CitaRe/blob/main/scripts/PubMed/PubMed_retracted_publication_CitingPapers_citedPapersHopefullyNotRetracted.txt.contexts.zip](`PubMed_retracted_publication_CitingPapers_citedPapersHopefullyNotRetracted.txt.contexts.zip`)
   * extraction, with the script called `sample.py`, of 1 line over 400 in this file: this provides a file with 3196 contexts of citations of articles, not known to be retracted, cited in articles which also cite retracted articles: the file `PubMed_retracted_publication_CitingPapers_citedPapersHopefullyNotRetracted.txt.sample.tsv`
+
+### Process to retrieve contexts of citations of retracted articles from the Hsiao and Schneider 2021 corpus
+* 44965 contexts are manually selected among the 49237 contexts of the sheet entitled "Source Hsiao Schneider" in [this spreadsheet file](https://docs.google.com/spreadsheets/d/1DDV8JJv3Koa1rzrQoCblw8j4e37z4gIkGcgsTNzEheU/edit?usp=sharing) (see source and reference above), in the following way:
+  * duplicates (contexts containing several citations, therefore appearing for each contained citation) are removed
+  * one identifier is created for each context
+  * contexts of citations in captions are removed (because they are often difficult to analyze)
+  * contexts of citations of length lower than 50 characters are removed (because they are often difficult to analyze)
+  * contexts of citations which seem to be extracted from a retraction notice instead of a scientific article, detected using the keywords "retracted" and "editor", are removed
+* 2500 contexts are selected (all contexts are labeled with a number from 1 to 18 and only those labeled with 1 are kept) among those 44965 kept contexts of citations of articles, not detected as retracted, in articles citing retracted articles (those with value "1ère passe" in column F entitled "passes" in sheet "Corpus dédoublonné et épuré" of [this spreadsheet file](https://docs.google.com/spreadsheets/d/1DDV8JJv3Koa1rzrQoCblw8j4e37z4gIkGcgsTNzEheU/edit?usp=sharing))
